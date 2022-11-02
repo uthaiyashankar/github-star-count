@@ -21,6 +21,7 @@ service / on new http:Listener(9090) {
 
         github:Client githubClient = check new (config);
         var repositories = check githubClient->getRepositories(orgName, true);
+        //Get the names. 
         string[]? names = check from var repository in repositories
         order by repository.stargazerCount descending
         limit numberOfRepos
